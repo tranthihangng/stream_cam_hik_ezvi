@@ -1,0 +1,3 @@
+Warning 2025-07-01 16:11:45:229  DevID:  Source-Line:MvCameraControl.dll(GenTLLoadLibraryEx.cpp-L0345)  ProcessName:python.exe(4172)     Description:[LoadCtiLibInter]MV_GCSetConfigIntValue is NULL, CTI path[C:\Program Files (x86)\Common Files\MVS\Runtime\Win64_x64\MvProducerVIR.dll]
+Warning 2025-07-01 16:11:45:303  DevID:Virtual GigE Vision  Source-Line:MvCameraControl.dll(GenTLManager.cpp-L1364)  ProcessName:python.exe(4172)     Description:[OpenInterfaceInter]Get cti version failed, nRet[0x8000000c]
+Info    2025-07-01 16:11:45:303  DevID:Virtual GigE Vision  Source-Line:MvCameraControl.dll(GenTLManager.cpp-L1366)  ProcessName:python.exe(4172)     Description:[OpenInterfaceInter]Interface open success! VIRGEVCtiVersion[], VIRGEVDrvVersion[]
