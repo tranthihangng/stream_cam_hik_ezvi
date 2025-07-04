@@ -2,8 +2,6 @@ import cv2
 import threading
 from ultralytics import YOLO
 import time
-import pygame  # For audio playback
-import os
 
 # Thay mã xác thực (LCGSXD) và IP (192.168.1.177)
 rtsp_url = "rtsp://admin:LCGSXD@192.168.1.177:554/h264/ch1/sub/av_stream"
@@ -31,20 +29,6 @@ detection_results = []
 frame_ready = threading.Event()
 results_ready = threading.Event()
 stop_threads = False
-
-last_person_detected = False
-pygame.mixer.init()
-audio_path = os.path.join(os.path.dirname(__file__), 'audio.mp3')
-def play_audio():
-    if os.path.exists(audio_path):
-        try:
-            if not pygame.mixer.music.get_busy():
-                pygame.mixer.music.load(audio_path)
-                pygame.mixer.music.play()
-        except Exception as e:
-            print(f"Lỗi phát audio: {e}")
-    else:
-        print(f"Không tìm thấy file audio: {audio_path}")
 
 # Đo FPS
 frame_count = 0
@@ -138,13 +122,6 @@ try:
             
             # Hiển thị frame
             cv2.imshow("EZVIZ Live Stream - Person Detection", display_frame)
-
-            # Phát audio nếu phát hiện người (và chỉ phát 1 lần cho mỗi lần phát hiện)
-            if detected_persons > 0 and not last_person_detected:
-                last_person_detected = True
-                threading.Thread(target=play_audio, daemon=True).start()
-            elif detected_persons == 0:
-                last_person_detected = False
         
         # Nhấn 'q' để thoát
         if cv2.waitKey(1) & 0xFF == ord('q'):
